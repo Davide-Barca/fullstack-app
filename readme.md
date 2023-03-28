@@ -4,6 +4,7 @@ Simple fullstack app to test how to implement a db in a website with js
 
 ## Modules required
 ```
+run the following commands in the /server folder
 - npm init -y
 - npm install experss
 - npm install mysql
@@ -13,7 +14,7 @@ Simple fullstack app to test how to implement a db in a website with js
 ```
 ## Setup project
 ```
-- create .env file on /server folder
+- create .env file in the /server folder
 - define on .env file the:
   - PORT
   - DB_USER
