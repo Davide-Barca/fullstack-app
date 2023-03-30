@@ -10,15 +10,14 @@
     <title>Web App</title>
 </head>
 <body>
+    <h1>Fullstack app with mysql database</h1>
     <main>
-        <label for="">Name:</label>
-        <input type="text" id="name-input">
-        <button id="add-name-btn">Add Name</button>
+        <h1>Compile Form</h1>
+        <input type="text" id="name-input" placeholder="Name">
+        <button id="add-name-btn">Add</button>
         <br><br><br>
-        <div>
-            <input placeholder="search by name" id="search-input">
-            <button id="search-btn">Search</button>
-        </div>
+        <input placeholder="Search name" id="search-input">
+        <button id="search-btn">Search</button>
 
         <table id="table">
             <thead>
@@ -32,8 +31,7 @@
         </table>
 
         <section hidden id="update-row">
-            <label for="">Name:</label>
-            <input type="text" id="update-name-input">
+            <input type="text" id="update-name-input" placeholder="Update Name">
             <button id="update-row-btn">Update</button>
         </section>
     </main>
