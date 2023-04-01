@@ -6,7 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('http://localhost:5000/getAll')
         .then(response => response.json())
         .then(data => loadHTMLTable(data['data']))
+        .catch((error) => show_error(error))
 })
+
+function show_error(error){
+    document.getElementById("form").style.filter = "blur(5px)"
+    document.getElementById("form").style.pointerEvents = "none"
+    document.querySelector("body h1").innerHTML = "Error to load db data, the server is not responding"
+}
 
 function loadHTMLTable(data) {
     const table = document.querySelector('table tbody')
