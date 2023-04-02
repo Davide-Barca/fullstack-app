@@ -52,15 +52,21 @@ addBtn.onclick = function(){
     const name = nameInput.value
     nameInput.value = ""
 
-    fetch('http://localhost:5000/insert', {
-        headers: {
-            'Content-type': 'application/json'
-        },
-        method: 'POST',
-        body: JSON.stringify({name: name})
-    })
-    .then(response => response.json())
-    .then(data => insertRowIntoTable(data['data']))
+    if(name !== ""){
+        document.getElementById(`${nameInput.id + "-error"}`).style.display = "none"
+        fetch('http://localhost:5000/insert', {
+            headers: {
+                'Content-type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({name: name})
+        })
+        .then(response => response.json())
+        .then(data => insertRowIntoTable(data['data']))
+    }
+    else{
+        document.getElementById(`${nameInput.id + "-error"}`).style.display = "block"
+    }    
 }
 
 function insertRowIntoTable(data){
@@ -97,13 +103,17 @@ function insertRowIntoTable(data){
 const searchBtn = document.querySelector('#search-btn')
 
 searchBtn.onclick = function () {
-    const nameSearchInput = document.querySelector('#search-input').value
+    const nameSearchInput = document.querySelector('#search-input')
 
-    console.log(nameSearchInput)
-
-    fetch('http://localhost:5000/search/' + nameSearchInput)
+    if(nameSearchInput.value !== ""){
+        document.getElementById(`${nameSearchInput.id + "-error"}`).style.display = "none"
+        fetch('http://localhost:5000/search/' + nameSearchInput.value)
         .then(response => response.json())
         .then(data => loadHTMLTable(data['data']))
+    }
+    else{
+        document.getElementById(`${nameSearchInput.id + "-error"}`).style.display = "block"
+    }    
 }
 
 /**
@@ -146,21 +156,45 @@ updateBtn.onclick = function() {
 
     console.log(updateNameInput)
 
-    fetch('http://localhost:5000/update', {
-        method: 'PATCH',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            id: updateNameInput.dataset.id,
-            name: updateNameInput.value
+    // fetch('http://localhost:5000/update', {
+    //     method: 'PATCH',
+    //     headers: {
+    //         'Content-type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         id: updateNameInput.dataset.id,
+    //         name: updateNameInput.value
+    //     })
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //     if(data.success){
+    //         location.reload()
+    //     }
+    // })
+
+    if(updateNameInput.value !== ""){
+        document.getElementById(`${updateNameInput.id + "-error"}`).style.display = "none"
+        fetch('http://localhost:5000/update', {
+            method: 'PATCH',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: updateNameInput.dataset.id,
+                name: updateNameInput.value
+            })
         })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if(data.success){
-            location.reload()
-        }
-    })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success){
+                location.reload()
+            }
+        })
+    }
+    else{
+        document.getElementById(`${updateNameInput.id + "-error"}`).style.display = "block"
+    }  
+    
 }
 
