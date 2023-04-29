@@ -11,6 +11,11 @@ run the following commands in the /server folder
 - npm install dotenv
 - npm install -g nodemon --save-dev 
 - npm install cors
+
+If you have problems with db connection (like me) try to use this module:
+- npm install mysql2
+then change on dbService.js
+- const mysql = require('mysql2')
 ```
 ## Setup project
 ```
